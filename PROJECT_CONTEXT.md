@@ -23,8 +23,13 @@
 
 - HaïtiShop funcionará como marketplace, no como una tienda de un único comercio.
 - El público incluye compradores particulares y clientes empresariales/comerciantes.
-- Los vendedores registrados podrán publicar productos.
-- El alcance de moderación, aprobación, verificación y suspensión de vendedores está pendiente de definición.
+- El registro de vendedores estará abierto, pero también podrá realizarse mediante creación o habilitación administrativa.
+- Los vendedores deberán pasar verificación documental.
+- Una vez que un vendedor esté habilitado, sus productos podrán publicarse inmediatamente, sin aprobación previa individual.
+- Cada vendedor tendrá su propio panel; también existirá un panel administrativo.
+- Cada vendedor administrará sus propios productos, precios e inventario.
+- Cada vendedor organizará sus propias entregas.
+- El modelo de ingresos seleccionado es una suscripción para vendedores; precio, periodicidad, planes y cobro están pendientes de definición.
 
 ### 2.2 Categorías iniciales
 
@@ -88,7 +93,7 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 |---|---|---|
 | Repositorio y estructura de código | Pendiente de inspección | El repositorio fue encontrado vacío en la inspección inicial |
 | Diseño y páginas | Por confirmar | — |
-| Marketplace / panel de vendedores | Alcance confirmado; implementación por inspeccionar | Vendedores registrados publican productos |
+| Marketplace / panel de vendedores | Alcance funcional definido; implementación por inspeccionar | Panel administrativo y panel individual de vendedor |
 | Catálogo de productos | Alcance definido parcialmente | Seis categorías iniciales confirmadas |
 | Carrito | Por confirmar | — |
 | Checkout | Por confirmar | — |
@@ -114,14 +119,22 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 | 2026-11-09 | Los vendedores registrados podrán publicar productos | Confirmada | Cuestionario 1, respuesta 5 |
 | 2026-11-09 | Diferenciadores: precios bajos, comercio local y confianza | Confirmada | Cuestionario 1, respuesta 6 |
 | 2026-11-09 | MonCash y NatCash deben formar parte de los requisitos de pago | Confirmada como requisito; implementación pendiente | Cuestionario 1, respuesta 7 |
+| 2026-11-09 | Registro de vendedores abierto y también habilitable por administración | Confirmada | Cuestionario 2, respuesta 1 |
+| 2026-11-09 | Los vendedores deben completar verificación documental | Confirmada | Cuestionario 2, respuesta 2 |
+| 2026-11-09 | Los productos se publican inmediatamente, sin aprobación individual previa | Confirmada | Cuestionario 2, respuesta 3 |
+| 2026-11-09 | Habrá panel administrativo y panel independiente para cada vendedor | Confirmada | Cuestionario 2, respuesta 4 |
+| 2026-11-09 | El modelo de ingresos será mediante suscripción de vendedores | Confirmada; condiciones económicas pendientes | Cuestionario 2, respuesta 5 |
+| 2026-11-09 | Cada vendedor gestionará sus propios precios e inventario | Confirmada | Cuestionario 2, respuesta 6 |
+| 2026-11-09 | Cada vendedor organizará sus propias entregas | Confirmada | Cuestionario 2, respuesta 7 |
 
 ## 7. Bloqueos y preguntas abiertas
 
 - Definir la visión detallada y la propuesta de valor de HaïtiShop.
-- Definir el registro, verificación, aprobación y administración de vendedores.
-- Definir comisiones, suscripciones u otro modelo de ingresos del marketplace.
-- Definir quién gestiona inventario, precios, disponibilidad y cumplimiento de pedidos.
-- Definir entrega, retiro, cobertura logística y cálculo de costos de envío.
+- Definir el procedimiento de registro abierto y creación/habilitación administrativa de vendedores.
+- Definir documentos exigidos, revisión, vigencia y tratamiento de la verificación documental.
+- Definir precio, periodicidad, niveles, período de prueba y consecuencias de impago de las suscripciones.
+- Definir controles administrativos y límites de gestión sobre productos e inventario de vendedores.
+- Definir condiciones, seguimiento y responsabilidades de las entregas gestionadas por cada vendedor.
 - Definir el flujo de compra y cómo se confirma un pago MonCash o NatCash en el demo.
 - Definir idiomas, moneda, impuestos y reglas de precios.
 - Definir mecanismos concretos de confianza y resolución de problemas.
@@ -162,3 +175,15 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - Se añadieron MonCash y NatCash como requisitos de pago.
 - La visión detallada quedó pendiente porque la respuesta fue enviada en blanco.
 - No se modificó código de la aplicación ni se verificó ninguna integración de servicios.
+
+
+### 2026-11-09 — Cuestionario 2: vendedores y administración
+
+- Se confirmó registro de vendedores abierto y también mediante habilitación administrativa.
+- Se confirmó verificación documental obligatoria para vendedores.
+- Se confirmó publicación inmediata de productos, sin aprobación previa individual.
+- Se confirmó panel administrativo y panel independiente para cada vendedor.
+- Se seleccionó suscripción como modelo de ingresos; condiciones y precios siguen pendientes.
+- Se confirmó que cada vendedor gestiona precios e inventario y organiza sus propias entregas.
+- No se aportó información adicional.
+- No se modificó código de la aplicación ni se verificó ninguna función implementada.
