@@ -23,13 +23,20 @@ export function AuthPanel({ onClose }: { onClose: () => void }) {
       if (mode === "signup") await createUserWithEmailAndPassword(auth, email, password);
       else await signInWithEmailAndPassword(auth, email, password);
       setMessage(mode === "signup" ? "Compte créé avec succès." : "Connexion réussie.");
+      setTimeout(onClose, 900);
     } catch (error) {
       const code = (error as {code?:string}).code ?? "";
       const messages: Record<string,string> = {
         "auth/email-already-in-use": "Cette adresse e-mail est déjà utilisée.",
         "auth/invalid-credential": "Adresse e-mail ou mot de passe incorrect.",
+        "auth/invalid-login-credentials": "Adresse e-mail ou mot de passe incorrect.",
+        "auth/user-not-found": "Aucun compte n’existe avec cette adresse e-mail.",
+        "auth/wrong-password": "Adresse e-mail ou mot de passe incorrect.",
         "auth/weak-password": "Le mot de passe doit contenir au moins 6 caractères.",
-        "auth/invalid-email": "Adresse e-mail invalide."
+        "auth/invalid-email": "Adresse e-mail invalide.",
+        "auth/operation-not-allowed": "La connexion par e-mail est désactivée dans Firebase.",
+        "auth/too-many-requests": "Trop de tentatives. Réessayez dans quelques minutes.",
+        "auth/network-request-failed": "Erreur réseau. Vérifiez votre connexion."
       };
       setMessage(messages[code] ?? "Impossible de terminer l’opération. Vérifiez la configuration Firebase.");
     } finally { setBusy(false); }

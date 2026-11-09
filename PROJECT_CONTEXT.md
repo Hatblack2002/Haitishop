@@ -88,7 +88,7 @@ Los mecanismos concretos para garantizar confianza (verificación de vendedores,
 
 | Área | Información disponible | Estado |
 |---|---|---|
-| Autenticación | Firebase Authentication con correo y contraseña (sign up/login) | Configuración web recibida; integración inicial en código |
+| Autenticación | Firebase Authentication con correo y contraseña (sign up/login) | Configuración web corregida (apiKey y appId reales) y verificada en navegador; dominio `haitishop.vercel.app` autorizado |
 | Base de datos | Cloud Firestore con 18 productos publicados y reglas del repo desplegadas | Colección `products` con lectura pública; seed idempotente `npm run seed` |
 | Imágenes y recursos visuales | Cloudinary, cloud `dcclzhsim`; logo alojado en la cuenta | Logo referenciado; upload preset unsigned pendiente |
 | Pagos | MonCash y NatCash | Simulación en demo; acceso API pendiente de verificación de cuenta del propietario |
@@ -122,7 +122,7 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 | Catálogo de productos | Alcance funcional definido; implementación por inspeccionar | Campos obligatorios, foto única, variantes, búsqueda, filtros, ordenamiento y ficha definidos |
 | Carrito | Alcance funcional definido; implementación por inspeccionar | Carrito persistente asociado a la cuenta |
 | Checkout | Alcance funcional definido; implementación por inspeccionar | Checkout interno con confirmación complementaria por WhatsApp |
-| Autenticación | Sign up/login inicial implementado | Firebase email/password; falta validar con proyecto y reglas reales |
+| Autenticación | Sign up/login implementado y verificado end-to-end | Firebase email/password probado en navegador: entrada, cierre de sesión y panel admin funcionan; cuenta demo `demo@haitishop.dev` (admin) disponible |
 | Cloudinary | 18 imágenes de productos alojadas y optimizadas (`f_auto,q_auto`); preset unsigned operativo | Carpeta `haitishop-demo/products`, public IDs `<categoría>-<n>-<slug>` |
 | MonCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | NatCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
@@ -326,3 +326,24 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - Documentación ampliada (README, `.env.example`).
 - Verificación pendiente al empaquetar: typecheck, lint y build del repositorio.
 
+### 2026-11-10 — Login de Firebase verificado y funcional
+
+- Diagnóstico del login contra el proyecto real: el proveedor email/contraseña ya estaba
+  activado, pero la `apiKey` del código era inválida (dos caracteres invertidos: `AO9gJQ…`
+  en vez de `AOg9JQ…`) y el `appId` tenía el número de proyecto equivocado
+  (`366912222405` en lugar de `366912084421`).
+- La configuración web correcta se obtuvo de la API de Firebase Management con la clave de
+  servicio del propietario y se corrigió en `src/lib/firebase.ts` y `.env.example`
+  (incluye `measurementId: G-J09GVC6NZH`).
+- `haitishop.vercel.app` añadido a los dominios autorizados de Identity Toolkit
+  (antes solo: localhost, haitishop.firebaseapp.com, haitishop.web.app).
+- Cuenta de demostración creada mediante la API admin: `demo@haitishop.dev` /
+  `DemoHaiti2026`, con documento `admins/l5RRuqlzjPfgEmhk0ve6HEUo1q73` en Firestore para
+  poder probar el panel de administración. Documentado cómo revocarla.
+- `auth-panel.tsx` mejorado: más errores traducidos al francés (credenciales inválidas,
+  e-mail ya usado, contraseña débil, proveedor desactivado, demasiados intentos, red) y
+  cierre automático del modal 0,9 s después de entrar.
+- Verificación end-to-end en navegador local: registro de sesión, entrada con la cuenta
+  demo («Connexion réussie»), carga del panel de administración (documento `admins`),
+  cierre de sesión y retorno al estado anónimo. typecheck, lint y build correctos.
+- La clave de cuenta de servicio se usó solo localmente; no se guardó en el repositorio.
