@@ -21,7 +21,7 @@
 - **Página principal:** estructura de marketplace con buscador, categorías, ofertas y productos.
 - **Navegación móvil:** barra inferior.
 - **Tema:** solo modo claro.
-- **Logotipo:** el propietario ya tiene uno y lo proporcionará; no crear uno nuevo ni sustituirlo sin autorización.
+- **Logotipo:** el propietario confirmó que el logotipo alojado en Cloudinary (public ID `copy_of_file_000000004b4481f5856e94a87bad615e_awp5pa.png`) es el original, subido por él mismo. No crear uno nuevo ni sustituirlo.
 
 ## 2. Alcance funcional confirmado
 
@@ -165,7 +165,7 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 | 2026-11-09 | La página principal seguirá una organización de marketplace, tomando Amazon como referencia funcional/visual | Confirmada | Cuestionario 4, respuestas 5 y 9 |
 | 2026-11-09 | La navegación móvil usará una barra inferior | Confirmada | Cuestionario 4, respuesta 6 |
 | 2026-11-09 | La interfaz tendrá únicamente tema claro | Confirmada | Cuestionario 4, respuesta 7 |
-| 2026-11-09 | Se conservará el logotipo existente que proporcionará el propietario | Confirmada; archivo pendiente de recibir | Cuestionario 4, respuesta 8 |
+| 2026-11-09 | Se conservará el logotipo existente que proporcionará el propietario | Confirmada; el propietario confirmó que el logo de Cloudinary es el original | Cuestionario 4, respuesta 8; confirmación del propietario 2026-11-10 |
 | 2026-11-09 | Campos obligatorios del producto: nombre, descripción, precio, fotografía, existencias, categoría, condición y ubicación del vendedor | Confirmada | Cuestionario 5, respuesta 1 |
 | 2026-11-09 | Cada producto tendrá una sola fotografía | Confirmada | Cuestionario 5, respuesta 2 |
 | 2026-11-09 | Los productos admitirán variantes configurables | Confirmada; atributos y reglas por variante pendientes | Cuestionario 5, respuesta 3 |
@@ -347,3 +347,16 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
   demo («Connexion réussie»), carga del panel de administración (documento `admins`),
   cierre de sesión y retorno al estado anónimo. typecheck, lint y build correctos.
 - La clave de cuenta de servicio se usó solo localmente; no se guardó en el repositorio.
+
+### 2026-11-10 — Cuenta admin del propietario y push a GitHub
+
+- El propietario confirmó que el logotipo actual de Cloudinary es el original subido por él;
+  no hace falta sustituirlo.
+- El propietario registró su cuenta personal `vertiljivenson9@gmail.com` (ya existía en
+  Firebase Authentication, creada desde la app). Se le asignó el documento
+  `admins/JTbCo8YWt7b0XCiEiVKSA5MhzW23` en Firestore mediante la API admin, por lo que
+  dispone del panel de administración con su propia cuenta. Su contraseña no se tocó.
+- La cuenta demo `demo@haitishop.dev` sigue disponible para pruebas; puede eliminarse o
+  quitársele el rol borrando su documento en `admins`.
+- Se preparó el push del repositorio corregido a GitHub usando un token temporal
+  aportado por el propietario, quien lo revocará después.
