@@ -380,3 +380,16 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - typecheck, lint y build correctos; la ruta `/icon.png` aparece en el build.
 - Sigue pendiente: interfaz multilingüe (FR/KRE/EN), variantes con existencias por variante
   y número real de WhatsApp.
+
+### 2026-11-10 — Onboarding visible «Comment ça marche» (patrón Temu/Amazon)
+
+- El propietario preguntó cómo hacen las grandes plataformas (Temu) para el registro de
+  compradores y vendedores. Se confirmó que el demo ya sigue el patrón estándar: navegar
+  sin cuenta, exigir cuenta en el checkout, y registro de vendedor con verificación
+  documental y aprobación administrativa.
+- Añadida la sección «Comment ça marche» en la portada con las dos rutas (acheter/vendre),
+  pasos numerados y botones que llevan al catálogo o al formulario de vendedor.
+- Tras iniciar sesión o crear cuenta: aviso contextual con el siguiente paso y, si el
+  carrito tenía productos, se reabre automáticamente para continuar el checkout.
+- Verificado en navegador: visitante añade al carrito → al pagar se abre el acceso;
+  tras entrar, el carrito reaparece listo para pagar. typecheck, lint y build correctos.

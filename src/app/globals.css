@@ -398,3 +398,19 @@ footer { min-height:85px; padding:20px 8%; display:flex; align-items:center; jus
 .order-line { align-items: flex-start; }
 .order-line small { display: block; color: #5b6b82; }
 .section-heading.admin-orders { margin-top: 34px; border-top: 1px solid #e3e9f2; padding-top: 22px; }
+
+/* ---------- Comment ça marche (onboarding) ---------- */
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.how-card { background: #fff; border: 1px solid #e3e9f2; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 24px rgba(18,48,92,.06); }
+.how-card-seller { background: linear-gradient(180deg, #f4f8ff, #fff); border-color: #c9dbf6; }
+.how-tag { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 12px; letter-spacing: .08em; color: #1769d2; }
+.how-card-seller .how-tag { color: #16845d; }
+.how-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: paso; }
+.how-steps li { counter-increment: paso; position: relative; padding-left: 40px; font-size: 14px; color: #3c4a5f; line-height: 1.5; }
+.how-steps li::before { content: counter(paso); position: absolute; left: 0; top: -2px; width: 27px; height: 27px; border-radius: 50%; background: #1769d2; color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+.how-card-seller .how-steps li::before { background: #16845d; }
+.how-steps b { color: #16233a; }
+.how-card .auth-submit { margin-top: auto; justify-content: center; }
+.how-card-seller .auth-submit { background: #16845d; }
+.how-card-seller .auth-submit:hover { background: #126b4b; }
+@media (max-width: 860px) { .how-grid { grid-template-columns: 1fr; } }

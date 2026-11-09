@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmail
 import { X, Mail, Lock, LoaderCircle } from "lucide-react";
 import { auth, firebaseReady } from "@/lib/firebase";
 
-export function AuthPanel({ onClose }: { onClose: () => void }) {
+export function AuthPanel({ onClose, onAuthSuccess }: { onClose: () => void; onAuthSuccess?: (kind: "login"|"signup") => void }) {
   const [mode, setMode] = useState<"login"|"signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +23,7 @@ export function AuthPanel({ onClose }: { onClose: () => void }) {
       if (mode === "signup") await createUserWithEmailAndPassword(auth, email, password);
       else await signInWithEmailAndPassword(auth, email, password);
       setMessage(mode === "signup" ? "Compte créé avec succès." : "Connexion réussie.");
+      onAuthSuccess?.(mode);
       setTimeout(onClose, 900);
     } catch (error) {
       const code = (error as {code?:string}).code ?? "";

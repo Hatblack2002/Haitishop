@@ -73,6 +73,12 @@ Para quitar los permisos de administrador de la cuenta demo: eliminar el documen
 
 ## Funciones de la demo (estado 2026-11-10)
 
+- **Onboarding tipo marketplace (Comment ça marche)**: sección en la portada con las dos
+  rutas — comprar (sin cuenta hasta el checkout) y vender (cuenta gratuita + solicitud con
+  documento + aprobación) — para que el flujo quede claro a primera vista.
+- **Guía post-autenticación**: tras entrar o crear cuenta, un aviso contextual explica el
+  siguiente paso y el carrito se reabre automáticamente si tenía productos.
+
 - **Login Firebase email/contraseña** con recuperación de contraseña ("Mot de passe oublié ?"
   envía el correo de restablecimiento de Firebase) y errores traducidos al francés.
 - **Ficha de producto**: al hacer clic en la imagen o el nombre de un producto se abre una
