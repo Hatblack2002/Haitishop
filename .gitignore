@@ -8,3 +8,10 @@ coverage
 .env.*.local
 *.log
 .DS_Store
+
+# Claves de cuenta de servicio (nunca versionar)
+service-account*.json
+*firebase-adminsdk*.json
+*adminsdk*.json
+tsconfig.tsbuildinfo
+*.tsbuildinfo

@@ -1,0 +1,345 @@
+[
+  {
+    "id": "electronique-01-smartphone-tecno",
+    "name": "Smartphone Tecno Spark 20",
+    "description": "Écran 6,6\", 128 Go, double SIM — neuf, garantie boutique.",
+    "price": 12500,
+    "category": "Électronique",
+    "condition": "Neuf",
+    "stock": 12,
+    "location": "Port-au-Prince",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "brand": "Tecno",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259146/electronique-01-smartphone-tecno.jpg",
+    "imagePublicId": "electronique-01-smartphone-tecno",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794064800
+    }
+  },
+  {
+    "id": "electronique-02-batterie-externe",
+    "name": "Batterie externe 20 000 mAh",
+    "description": "Charge rapide USB-C, 2 ports — idéale pour les coupures de courant.",
+    "price": 2850,
+    "category": "Électronique",
+    "condition": "Neuf",
+    "stock": 30,
+    "location": "Cap-Haïtien",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259150/electronique-02-batterie-externe.jpg",
+    "imagePublicId": "electronique-02-batterie-externe",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794061200
+    }
+  },
+  {
+    "id": "electronique-03-smart-tv-43",
+    "name": "Smart TV LED 43\"",
+    "description": "Full HD, Wi-Fi, Netflix et YouTube intégrés.",
+    "price": 32000,
+    "category": "Électronique",
+    "condition": "Neuf",
+    "stock": 5,
+    "location": "Les Cayes",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259152/electronique-03-smart-tv-43.jpg",
+    "imagePublicId": "electronique-03-smart-tv-43",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794057600
+    }
+  },
+  {
+    "id": "mode-04-chemise-polo",
+    "name": "Chemise polo homme",
+    "description": "Coton respirant, coupe droite — tailles S à XXL.",
+    "price": 1450,
+    "category": "Mode",
+    "condition": "Neuf",
+    "stock": 40,
+    "location": "Gonaïves",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259155/mode-04-chemise-polo.jpg",
+    "imagePublicId": "mode-04-chemise-polo",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794054000
+    }
+  },
+  {
+    "id": "mode-05-robe-ete",
+    "name": "Robe d'été femme",
+    "description": "Tissu léger et coloré, parfaite pour le climat tropical.",
+    "price": 2200,
+    "category": "Mode",
+    "condition": "Neuf",
+    "stock": 18,
+    "location": "Saint-Marc",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259159/mode-05-robe-ete.jpg",
+    "imagePublicId": "mode-05-robe-ete",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794050400
+    }
+  },
+  {
+    "id": "mode-06-sandales-cuir",
+    "name": "Sandales cuir femme",
+    "description": "Cuir véritable, semelle confort — fabrication artisanale.",
+    "price": 1850,
+    "category": "Mode",
+    "condition": "Neuf",
+    "stock": 15,
+    "location": "Jacmel",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259161/mode-06-sandales-cuir.jpg",
+    "imagePublicId": "mode-06-sandales-cuir",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794046800
+    }
+  },
+  {
+    "id": "maison-07-blender-cuisine",
+    "name": "Blender de cuisine 1,5 L",
+    "description": "Moteur 500 W, 2 vitesses + pulse — verre résistant.",
+    "price": 3400,
+    "category": "Maison",
+    "condition": "Neuf",
+    "stock": 10,
+    "location": "Pétion-Ville",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259164/maison-07-blender-cuisine.jpg",
+    "imagePublicId": "maison-07-blender-cuisine",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794043200
+    }
+  },
+  {
+    "id": "maison-08-ventilateur-pied",
+    "name": "Ventilateur sur pied",
+    "description": "3 vitesses, hauteur réglable, oscillation large.",
+    "price": 4200,
+    "category": "Maison",
+    "condition": "Neuf",
+    "stock": 14,
+    "location": "Hinche",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259906/maison-08-ventilateur-pied-v2.jpg",
+    "imagePublicId": "maison-08-ventilateur-pied-v2",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794039600
+    }
+  },
+  {
+    "id": "maison-09-batterie-cuisine",
+    "name": "Batterie de cuisine inox 10 pièces",
+    "description": "Casseroles et poêles antiadhésives — compatible gaz.",
+    "price": 7900,
+    "category": "Maison",
+    "condition": "Neuf",
+    "stock": 8,
+    "location": "Jérémie",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259171/maison-09-batterie-cuisine.jpg",
+    "imagePublicId": "maison-09-batterie-cuisine",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794036000
+    }
+  },
+  {
+    "id": "beaute-10-huile-coco",
+    "name": "Huile de coco pure 250 ml",
+    "description": "100 % naturelle, pressée à froid — cheveux et peau.",
+    "price": 650,
+    "category": "Beauté",
+    "condition": "Neuf",
+    "stock": 60,
+    "location": "Fort-Liberté",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259947/beaute-10-huile-coco-v2.jpg",
+    "imagePublicId": "beaute-10-huile-coco-v2",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794032400
+    }
+  },
+  {
+    "id": "beaute-11-creme-hydratante",
+    "name": "Crème hydratante visage",
+    "description": "Formule douce au karité pour tous types de peau.",
+    "price": 1100,
+    "category": "Beauté",
+    "condition": "Neuf",
+    "stock": 35,
+    "location": "Port-de-Paix",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259178/beaute-11-creme-hydratante.jpg",
+    "imagePublicId": "beaute-11-creme-hydratante",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794028800
+    }
+  },
+  {
+    "id": "beaute-12-parfum-femme",
+    "name": "Parfum femme 50 ml",
+    "description": "Notes florales tenue longue durée.",
+    "price": 3800,
+    "category": "Beauté",
+    "condition": "Neuf",
+    "stock": 9,
+    "location": "Miragoâne",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259181/beaute-12-parfum-femme.jpg",
+    "imagePublicId": "beaute-12-parfum-femme",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794025200
+    }
+  },
+  {
+    "id": "alimentation-13-cafe-haitien",
+    "name": "Café haïtien moulu 500 g",
+    "description": "Arabica des montagnes du Nord, torréfaction artisanale.",
+    "price": 780,
+    "category": "Alimentation",
+    "condition": "Neuf",
+    "stock": 50,
+    "location": "Port-au-Prince",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259184/alimentation-13-cafe-haitien.jpg",
+    "imagePublicId": "alimentation-13-cafe-haitien",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794021600
+    }
+  },
+  {
+    "id": "alimentation-14-riz-25kg",
+    "name": "Riz blanc 25 kg",
+    "description": "Grain long, sac familial — récolte de la plaine.",
+    "price": 4300,
+    "category": "Alimentation",
+    "condition": "Neuf",
+    "stock": 120,
+    "location": "Cap-Haïtien",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259187/alimentation-14-riz-25kg.jpg",
+    "imagePublicId": "alimentation-14-riz-25kg",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794018000
+    }
+  },
+  {
+    "id": "alimentation-15-huile-vegetale",
+    "name": "Huile végétale 1 L",
+    "description": "Idéale pour la friture et la cuisine quotidienne.",
+    "price": 320,
+    "category": "Alimentation",
+    "condition": "Neuf",
+    "stock": 200,
+    "location": "Les Cayes",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259189/alimentation-15-huile-vegetale.jpg",
+    "imagePublicId": "alimentation-15-huile-vegetale",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794014400
+    }
+  },
+  {
+    "id": "construction-16-ciment-42kg",
+    "name": "Sac de ciment 42 kg",
+    "description": "Ciment CPJ 425 — chantiers et maçonnerie.",
+    "price": 1050,
+    "category": "Construction",
+    "condition": "Neuf",
+    "stock": 300,
+    "location": "Pétion-Ville",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259192/construction-16-ciment-42kg.jpg",
+    "imagePublicId": "construction-16-ciment-42kg",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794010800
+    }
+  },
+  {
+    "id": "construction-17-peinture-5gallons",
+    "name": "Peinture intérieure 5 gallons",
+    "description": "Finition mate lavable, large choix de teintes.",
+    "price": 6800,
+    "category": "Construction",
+    "condition": "Neuf",
+    "stock": 16,
+    "location": "Saint-Marc",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259195/construction-17-peinture-5gallons.jpg",
+    "imagePublicId": "construction-17-peinture-5gallons",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794007200
+    }
+  },
+  {
+    "id": "construction-18-perceuse-21v",
+    "name": "Perceuse sans fil 21 V",
+    "description": "2 batteries, mandrin auto + coffret d'accessoires.",
+    "price": 5600,
+    "category": "Construction",
+    "condition": "Neuf",
+    "stock": 7,
+    "location": "Jacmel",
+    "sellerId": "haitishop-selection",
+    "sellerName": "HaïtiShop Sélection",
+    "imageUrl": "https://res.cloudinary.com/dcclzhsim/image/upload/f_auto,q_auto/v1794259199/construction-18-perceuse-21v.jpg",
+    "imagePublicId": "construction-18-perceuse-21v",
+    "imageProvider": "cloudinary",
+    "active": true,
+    "createdAt": {
+      "seconds": 1794003600
+    }
+  }
+]

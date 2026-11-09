@@ -89,7 +89,7 @@ Los mecanismos concretos para garantizar confianza (verificación de vendedores,
 | Área | Información disponible | Estado |
 |---|---|---|
 | Autenticación | Firebase Authentication con correo y contraseña (sign up/login) | Configuración web recibida; integración inicial en código |
-| Base de datos | Cloud Firestore | Activado por el propietario; cliente inicial configurado |
+| Base de datos | Cloud Firestore con 18 productos publicados y reglas del repo desplegadas | Colección `products` con lectura pública; seed idempotente `npm run seed` |
 | Imágenes y recursos visuales | Cloudinary, cloud `dcclzhsim`; logo alojado en la cuenta | Logo referenciado; upload preset unsigned pendiente |
 | Pagos | MonCash y NatCash | Simulación en demo; acceso API pendiente de verificación de cuenta del propietario |
 | Pedidos | Flujo de confirmación y consulta mediante WhatsApp | Implementación demo sin número oficial; destino configurable pendiente |
@@ -123,7 +123,7 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 | Carrito | Alcance funcional definido; implementación por inspeccionar | Carrito persistente asociado a la cuenta |
 | Checkout | Alcance funcional definido; implementación por inspeccionar | Checkout interno con confirmación complementaria por WhatsApp |
 | Autenticación | Sign up/login inicial implementado | Firebase email/password; falta validar con proyecto y reglas reales |
-| Cloudinary | Logo referenciado; carga de productos pendiente | Requiere nombre de unsigned upload preset |
+| Cloudinary | 18 imágenes de productos alojadas y optimizadas (`f_auto,q_auto`); preset unsigned operativo | Carpeta `haitishop-demo/products`, public IDs `<categoría>-<n>-<slug>` |
 | MonCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | NatCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | Flujo WhatsApp | Alcance funcional definido parcialmente; implementación por inspeccionar | Confirmación de compra y consulta de pedidos por WhatsApp |
@@ -293,3 +293,36 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - Se creó la base Next.js/TypeScript, la página inicial, el panel de autenticación email/password, la configuración cliente de Firebase, el ejemplo de variables y el workflow de CI.
 - La clave privada de Firebase Admin compartida en la conversación no se utilizó ni se guardó. El demo utiliza la configuración web pública de Firebase.
 - Cloudinary unsigned upload preset sigue pendiente. La documentación actual sitúa su creación en Console Settings → Upload → Upload Presets.
+
+### 2026-11-09 — Catálogo de imágenes completado (Cloudinary + Firestore)
+
+- Se subieron las 18 fotografías de productos a Cloudinary (cloud `dcclzhsim`) mediante
+  el preset unsigned `haitishop_demo_unsigned`, con public IDs controlados
+  (`<categoría>-<número>-<slug>`) en la carpeta `haitishop-demo/products` y entrega
+  optimizada `f_auto,q_auto`. Verificación de todas las URLs: correcta.
+- Se corrigieron dos imágenes tras revisión visual (ventilador de pie y aceite de coco);
+  las versiones nuevas quedaron como public IDs `-v2` en Cloudinary.
+- Se publicaron los metadatos de los 18 productos en la colección `products` de Firestore
+  usando la clave de cuenta de servicio aportada por el propietario (script idempotente
+  `scripts/seed-firestore.mjs`, `npm run seed`).
+- Se detectó que el proyecto Firestore estaba en modo bloqueado (deny-all); se desplegaron
+  las reglas del fichero `firestore.rules` del repositorio (lectura pública de productos,
+  escritura restringida) mediante la API de reglas. Verificado: lectura pública correcta,
+  escritura anónima denegada (403).
+- Se añadió `src/data/catalog-seed.json` + `catalog-seed.ts` como catálogo de reserva en la
+  app: si Firestore está vacío o no responde, la web muestra este catálogo en lugar de una
+  página vacía.
+- Verificado en producción: https://haitishop.vercel.app muestra los 18 productos con sus
+  imágenes de Cloudinary, precios HTG, ubicaciones y existencias.
+- El propietario aportó la clave de cuenta de servicio en la conversación; no se guardó en
+  el repositorio ni en este documento. `.gitignore` excluye patrones `*firebase-adminsdk*.json`.
+- Añadido `firebase.json` para permitir despliegues de reglas con firebase-tools.
+
+### 2026-11-10 — Cierre del catálogo y empaquetado
+
+- Parches de integración aplicados a `marketplace-app.tsx` (catálogo inicial como estado y
+  como reserva de la suscripción de Firestore).
+- `npm run seed` añadido a package.json; `firebase-admin` añadido a devDependencies.
+- Documentación ampliada (README, `.env.example`).
+- Verificación pendiente al empaquetar: typecheck, lint y build del repositorio.
+

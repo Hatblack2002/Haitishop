@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
 import { AuthPanel } from "@/components/auth-panel";
+import { SEED_PRODUCTS } from "@/data/catalog-seed";
 
 type Product = {
   id: string; name: string; description: string; price: number; category: string;
@@ -37,7 +38,8 @@ const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "haitis
 export function MarketplaceApp() {
   const [user, setUser] = useState<User | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
+  // Catálogo de demostración visible de inmediato; Firestore lo sustituye en cuanto haya productos publicados.
+  const [products, setProducts] = useState<Product[]>(SEED_PRODUCTS);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Tout");
   const [sort, setSort] = useState("recent");
@@ -74,8 +76,9 @@ export function MarketplaceApp() {
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "products"), (snapshot) => {
-      setProducts(snapshot.docs.map((item) => ({ id:item.id, ...item.data() } as Product)).filter((p) => p.stock > 0));
-    }, () => setNotice("Catalogue indisponible. Vérifiez les règles Firestore."));
+      const live = snapshot.docs.map((item) => ({ id:item.id, ...item.data() } as Product)).filter((p) => p.stock > 0);
+      setProducts(live.length ? live : SEED_PRODUCTS);
+    }, () => setNotice("Catalogue Firestore indisponible \u2014 affichage du catalogue de d\u00e9monstration."));
     return () => unsub();
   }, []);
 
