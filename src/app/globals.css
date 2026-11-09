@@ -374,3 +374,27 @@ footer { min-height:85px; padding:20px 8%; display:flex; align-items:center; jus
   .mobile-bottom-nav b { position:absolute; top:0; margin-left:22px; min-width:15px; height:15px; display:grid; place-items:center; border-radius:50%; background:var(--blue); color:#fff; font-size:8px; }
   footer { padding:20px 5%; }
 }
+
+/* ---------- Ficha de producto (modal de detalle) ---------- */
+.detail-modal { max-width: 780px; width: min(780px, 94vw); padding: 28px; }
+.detail-body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.detail-image { border-radius: 14px; overflow: hidden; background: #f2f5fa; border: 1px solid #e3e9f2; min-height: 260px; display: flex; align-items: center; justify-content: center; }
+.detail-image img { width: 100%; height: 100%; max-height: 340px; object-fit: cover; display: block; }
+.detail-info { display: flex; flex-direction: column; gap: 10px; }
+.detail-info small { color: #5b6b82; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: 11px; }
+.detail-info h2 { margin: 0; font-size: 24px; line-height: 1.2; color: #16233a; }
+.detail-price { font-size: 26px; color: #16845d; }
+.detail-desc { margin: 0; color: #3c4a5f; font-size: 14px; line-height: 1.55; }
+.detail-meta { display: inline-flex; align-items: center; gap: 6px; color: #5b6b82; font-size: 13px; margin: 0; }
+.detail-info .stock-line { color: #16845d; font-weight: 700; font-size: 13px; }
+@media (max-width: 680px) { .detail-body { grid-template-columns: 1fr; } }
+
+/* ---------- Enlaces y líneas auxiliares ---------- */
+.link-btn { background: none; border: none; padding: 0; color: #1769d2; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left; width: fit-content; }
+.link-btn:hover { text-decoration: underline; }
+.doc-link { color: #1769d2; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.doc-link:hover { text-decoration: underline; }
+.my-product .doc-link { font-size: 12px; }
+.order-line { align-items: flex-start; }
+.order-line small { display: block; color: #5b6b82; }
+.section-heading.admin-orders { margin-top: 34px; border-top: 1px solid #e3e9f2; padding-top: 22px; }

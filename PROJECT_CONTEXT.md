@@ -127,7 +127,7 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 | MonCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | NatCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | Flujo WhatsApp | Alcance funcional definido parcialmente; implementación por inspeccionar | Confirmación de compra y consulta de pedidos por WhatsApp |
-| Pruebas | Por confirmar | — |
+| Pruebas | Verificación manual E2E en navegador | Login, recuperación de contraseña, ficha de producto, checkout, pedidos admin, documento de vendedor y aprobación probados el 2026-11-10 |
 | Despliegue demo | Por confirmar | — |
 
 ## 6. Decisiones aprobadas
@@ -360,3 +360,23 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
   quitársele el rol borrando su documento en `admins`.
 - Se preparó el push del repositorio corregido a GitHub usando un token temporal
   aportado por el propietario, quien lo revocará después.
+
+### 2026-11-10 — Funciones añadidas: recuperación, ficha de producto, pedidos admin, documento de vendedor, SEO
+
+- **Recuperación de contraseña**: enlace «Mot de passe oublié ?» en el modal de acceso;
+  usa `sendPasswordResetEmail` de Firebase. Probado: correo enviado.
+- **Ficha de producto**: modal de detalle al hacer clic en la imagen o el nombre de una
+  tarjeta (foto, precio, descripción, marca, variantes, vendedor, ubicación, existencias,
+  añadir al carrito). Probado en navegador.
+- **Pedidos recientes para la administración**: suscripción a `orders` (últimas 20,
+  descendentes por `createdAt`) visible solo para admins. Probado: pedido de prueba
+  visible con total, método de pago, contacto y artículos; eliminado después de la prueba.
+- **Verificación documental real**: el formulario de vendedor exige una foto del documento
+  (imagen, máx. según Cloudinary) que se sube a Cloudinary en `haitishop-demo/documents`;
+  la solicitud guarda `documentUrl` y la administración la revisa con «Voir le document».
+  Probado end-to-end: subida, revisión y aprobación; datos de prueba eliminados después.
+- **SEO/favicon**: metadatos completos (Open Graph/Twitter con el logo original,
+  metadataBase haitishop.vercel.app) e `icon.png` de 512×512 generado desde el logo.
+- typecheck, lint y build correctos; la ruta `/icon.png` aparece en el build.
+- Sigue pendiente: interfaz multilingüe (FR/KRE/EN), variantes con existencias por variante
+  y número real de WhatsApp.

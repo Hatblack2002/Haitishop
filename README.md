@@ -71,6 +71,22 @@ contra el proyecto `haitishop`):
 Para quitar los permisos de administrador de la cuenta demo: eliminar el documento
 `admins/l5RRuqlzjPfgEmhk0ve6HEUo1q73` en Firestore (Console → Firestore → admins).
 
+## Funciones de la demo (estado 2026-11-10)
+
+- **Login Firebase email/contraseña** con recuperación de contraseña ("Mot de passe oublié ?"
+  envía el correo de restablecimiento de Firebase) y errores traducidos al francés.
+- **Ficha de producto**: al hacer clic en la imagen o el nombre de un producto se abre una
+  ficha con foto, precio, descripción, marca, variantes, vendedor, ubicación y existencias,
+  con botón para añadir al carrito.
+- **Verificación documental de vendedores**: el formulario de inscripción de vendedor sube
+  una foto del documento a Cloudinary (carpeta `haitishop-demo/documents`) y la
+  administración la revisa con el enlace «Voir le document» antes de aprobar.
+- **Panel de administración**: demandas de vendedores pendientes (con documento) y las
+  20 últimas órdenes registradas en Firestore (comprador, total, método de pago, estado,
+  contacto y artículos).
+- **SEO y favicon**: metadatos Open Graph/Twitter con el logo original y `icon.png`
+  (generado desde el logo) servido por Next.js.
+
 ## Validation
 
 - `npm run typecheck`
