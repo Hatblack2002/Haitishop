@@ -71,6 +71,19 @@ Los mecanismos concretos para garantizar confianza (verificación de vendedores,
 - Las valoraciones y reseñas están pendientes de decisión.
 - Reglas de confirmación de pago, conciliación, cancelaciones y reembolsos: por definir.
 
+
+### 2.5 Catálogo y publicación de productos
+
+- Campos obligatorios de cada producto: nombre, descripción, precio, fotografía, existencias disponibles, categoría, estado (nuevo/usado) y ubicación del vendedor.
+- No se establecieron como obligatorios la marca ni el SKU/código de producto.
+- Cada producto tendrá una sola fotografía.
+- Se admitirán variantes configurables dentro de un producto (por ejemplo, talla, color, capacidad o modelo). Los atributos concretos y la gestión de existencias/precios por variante quedan pendientes.
+- El inventario será administrado manualmente por el vendedor; no se ha decidido un descuento automático de existencias por compra.
+- El buscador incluirá búsqueda avanzada por nombre, categoría, marca y palabras clave, con sugerencias mientras el usuario escribe.
+- Los filtros incluirán precio, categoría, marca, ubicación, vendedor y disponibilidad.
+- El catálogo podrá ordenarse por relevancia, precio ascendente, precio descendente y fecha de publicación (más recientes).
+- La ficha de producto será completa e incluirá galería/fotografía, descripción, precio, vendedor, disponibilidad y acción de compra. La opción de una sola fotografía significa que la galería tendrá una única imagen por producto en el alcance actual.
+
 ## 3. Arquitectura y servicios
 
 | Área | Información disponible | Estado |
@@ -106,7 +119,7 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 | Repositorio y estructura de código | Pendiente de inspección | El repositorio fue encontrado vacío en la inspección inicial |
 | Diseño y páginas | Por confirmar | — |
 | Marketplace / panel de vendedores | Alcance funcional definido; implementación por inspeccionar | Panel administrativo y panel individual de vendedor |
-| Catálogo de productos | Alcance definido parcialmente | Seis categorías iniciales confirmadas |
+| Catálogo de productos | Alcance funcional definido; implementación por inspeccionar | Campos obligatorios, foto única, variantes, búsqueda, filtros, ordenamiento y ficha definidos |
 | Carrito | Alcance funcional definido; implementación por inspeccionar | Carrito persistente asociado a la cuenta |
 | Checkout | Alcance funcional definido; implementación por inspeccionar | Checkout interno con confirmación complementaria por WhatsApp |
 | Autenticación | Por confirmar | Firebase Authentication es una decisión previa |
@@ -153,6 +166,14 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 | 2026-11-09 | La navegación móvil usará una barra inferior | Confirmada | Cuestionario 4, respuesta 6 |
 | 2026-11-09 | La interfaz tendrá únicamente tema claro | Confirmada | Cuestionario 4, respuesta 7 |
 | 2026-11-09 | Se conservará el logotipo existente que proporcionará el propietario | Confirmada; archivo pendiente de recibir | Cuestionario 4, respuesta 8 |
+| 2026-11-09 | Campos obligatorios del producto: nombre, descripción, precio, fotografía, existencias, categoría, condición y ubicación del vendedor | Confirmada | Cuestionario 5, respuesta 1 |
+| 2026-11-09 | Cada producto tendrá una sola fotografía | Confirmada | Cuestionario 5, respuesta 2 |
+| 2026-11-09 | Los productos admitirán variantes configurables | Confirmada; atributos y reglas por variante pendientes | Cuestionario 5, respuesta 3 |
+| 2026-11-09 | El inventario será actualizado manualmente por cada vendedor | Confirmada | Cuestionario 5, respuesta 4 |
+| 2026-11-09 | El buscador será avanzado y mostrará sugerencias al escribir | Confirmada | Cuestionario 5, respuesta 5 |
+| 2026-11-09 | Los filtros incluirán precio, categoría, marca, ubicación, vendedor y disponibilidad | Confirmada | Cuestionario 5, respuesta 6 |
+| 2026-11-09 | El ordenamiento incluirá relevancia, precio ascendente/descendente y productos más recientes | Confirmada | Cuestionario 5, respuesta 7 |
+| 2026-11-09 | La ficha de producto será completa, con descripción, precio, vendedor, disponibilidad y compra | Confirmada | Cuestionario 5, respuesta 8 |
 
 ## 7. Bloqueos y preguntas abiertas
 
@@ -166,6 +187,9 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 - Definir si las valoraciones/reseñas se incorporarán y bajo qué reglas.
 - Definir impuestos y reglas de precios, incluyendo formato y tratamiento de HTG.
 - Definir mecanismos concretos de confianza y resolución de problemas.
+- Definir los atributos permitidos para las variantes y si cada variante tendrá precio, SKU y existencias propios.
+- Definir si la restricción de una fotografía por producto se mantiene también para cada variante.
+- Definir si se requiere un límite de caracteres, formato o validación para los campos del catálogo.
 - Reconstruir la arquitectura definitiva a partir de la información del propietario.
 - Verificar qué cuentas y servicios ya están creados y cuáles están realmente configurados.
 - Determinar qué partes del demo deben simularse y cuáles deben conectarse a servicios reales de prueba.
@@ -241,4 +265,18 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - Se utilizará únicamente tema claro.
 - El propietario ya dispone de un logotipo y lo proporcionará; no se diseñará uno nuevo por ahora.
 - No se aportaron instrucciones adicionales.
+- No se modificó código de la aplicación ni se verificó ninguna función implementada.
+
+
+### 2026-11-09 — Cuestionario 5: catálogo y publicación de productos
+
+- Campos obligatorios: nombre, descripción, precio, fotografía, existencias, categoría, condición y ubicación del vendedor.
+- Se confirmó una sola fotografía por producto.
+- Se confirmó soporte para variantes configurables; los atributos y las reglas de inventario/precio por variante quedan pendientes.
+- El vendedor actualizará manualmente las existencias.
+- El buscador será avanzado, con sugerencias mientras se escribe.
+- Se confirmaron filtros por precio, categoría, marca, ubicación, vendedor y disponibilidad.
+- El ordenamiento incluirá relevancia, precio ascendente/descendente y fecha de publicación.
+- La ficha de producto será completa e incluirá información del vendedor, disponibilidad y acción de compra.
+- No se aportó información adicional.
 - No se modificó código de la aplicación ni se verificó ninguna función implementada.
