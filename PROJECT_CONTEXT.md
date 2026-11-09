@@ -88,11 +88,11 @@ Los mecanismos concretos para garantizar confianza (verificación de vendedores,
 
 | Área | Información disponible | Estado |
 |---|---|---|
-| Autenticación | Firebase Authentication | Decisión previa; confirmar configuración actual |
-| Base de datos | No asumir Firestore ni otro servicio hasta confirmación expresa | Por confirmar |
-| Imágenes y recursos visuales | Cloudinary | Decisión previa |
-| Pagos | MonCash y NatCash | Requisito confirmado; integración y modo demo por definir |
-| Pedidos | Envío/gestión mediante WhatsApp | Decisión previa; confirmar flujo |
+| Autenticación | Firebase Authentication con correo y contraseña (sign up/login) | Configuración web recibida; integración inicial en código |
+| Base de datos | Cloud Firestore | Activado por el propietario; cliente inicial configurado |
+| Imágenes y recursos visuales | Cloudinary, cloud `dcclzhsim`; logo alojado en la cuenta | Logo referenciado; upload preset unsigned pendiente |
+| Pagos | MonCash y NatCash | Simulación en demo; acceso API pendiente de verificación de cuenta del propietario |
+| Pedidos | Flujo de confirmación y consulta mediante WhatsApp | Implementación demo sin número oficial; destino configurable pendiente |
 | Ubicación del cliente | Compartir ubicación solo con consentimiento del cliente | Decisión previa |
 | Hosting/despliegue | No asumir Vercel ni otro proveedor | Por confirmar |
 | Código y control de versiones | GitHub: Hatblack2002/Haitishop | Repositorio identificado |
@@ -116,14 +116,14 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 
 | Componente | Estado | Evidencia / observaciones |
 |---|---|---|
-| Repositorio y estructura de código | Pendiente de inspección | El repositorio fue encontrado vacío en la inspección inicial |
-| Diseño y páginas | Por confirmar | — |
+| Repositorio y estructura de código | Base inicial creada | Next.js 15, React 19, TypeScript, Firebase SDK y CI; commit `69f0b95` |
+| Diseño y páginas | Primera página de marketplace creada | Hero, buscador, categorías, catálogo de muestra y acceso de cuenta; commit `69f0b95` |
 | Marketplace / panel de vendedores | Alcance funcional definido; implementación por inspeccionar | Panel administrativo y panel individual de vendedor |
 | Catálogo de productos | Alcance funcional definido; implementación por inspeccionar | Campos obligatorios, foto única, variantes, búsqueda, filtros, ordenamiento y ficha definidos |
 | Carrito | Alcance funcional definido; implementación por inspeccionar | Carrito persistente asociado a la cuenta |
 | Checkout | Alcance funcional definido; implementación por inspeccionar | Checkout interno con confirmación complementaria por WhatsApp |
-| Autenticación | Por confirmar | Firebase Authentication es una decisión previa |
-| Cloudinary | Por confirmar | Decisión previa |
+| Autenticación | Sign up/login inicial implementado | Firebase email/password; falta validar con proyecto y reglas reales |
+| Cloudinary | Logo referenciado; carga de productos pendiente | Requiere nombre de unsigned upload preset |
 | MonCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | NatCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | Flujo WhatsApp | Alcance funcional definido parcialmente; implementación por inspeccionar | Confirmación de compra y consulta de pedidos por WhatsApp |
@@ -280,3 +280,16 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - La ficha de producto será completa e incluirá información del vendedor, disponibilidad y acción de compra.
 - No se aportó información adicional.
 - No se modificó código de la aplicación ni se verificó ninguna función implementada.
+
+
+### 2026-11-09 — Inicio del desarrollo del demo
+
+- El propietario confirmó Firebase Authentication con correo y contraseña para registro e inicio de sesión.
+- El propietario confirmó que Cloud Firestore está activado.
+- Se registró el cloud name de Cloudinary: `dcclzhsim`.
+- Se identificó el logo alojado en Cloudinary mediante el public ID `copy_of_file_000000004b4481f5856e94a87bad615e_awp5pa.png`.
+- El flujo de WhatsApp se implementará sin número oficial por ahora; el número de destino debe poder configurarse después.
+- MonCash y NatCash se mostrarán como opciones de pago simuladas. El propietario aún no ha completado la verificación necesaria para solicitar las API.
+- Se creó la base Next.js/TypeScript, la página inicial, el panel de autenticación email/password, la configuración cliente de Firebase, el ejemplo de variables y el workflow de CI.
+- La clave privada de Firebase Admin compartida en la conversación no se utilizó ni se guardó. El demo utiliza la configuración web pública de Firebase.
+- Cloudinary unsigned upload preset sigue pendiente. La documentación actual sitúa su creación en Console Settings → Upload → Upload Presets.
