@@ -22,7 +22,7 @@ type Product = {
   createdAt?: { seconds?: number };
 };
 type CartLine = { product: Product; quantity: number };
-type SellerApplication = { id: string; uid: string; displayName: string; phone: string; location: string; documentName: string; status: string };
+type SellerApplication = { id: string; uid: string; email: string; displayName: string; phone: string; location: string; documentName: string; status: string };
 
 const categories = [
   { name: "Électronique", icon: Laptop }, { name: "Mode", icon: Shirt },
