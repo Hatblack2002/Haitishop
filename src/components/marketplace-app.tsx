@@ -9,7 +9,7 @@ import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import {
   Apple, ArrowRight, BadgeCheck, Camera, Check, ChevronDown, ChevronRight,
   CircleUserRound, ClipboardList, Heart, House, Laptop, LoaderCircle, LogOut,
-  MapPin, Menu, Package, Search, ShoppingBag, Shirt, SlidersHorizontal,
+  MapPin, Package, Search, ShoppingBag, Shirt, SlidersHorizontal,
   Sparkles, Store, Truck, X, Hammer
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
