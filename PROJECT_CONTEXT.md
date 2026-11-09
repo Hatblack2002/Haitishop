@@ -13,9 +13,15 @@
 - **Público objetivo:** consumidores particulares y empresas/comerciantes.
 - **Cobertura inicial:** todo el territorio nacional de Haití.
 - **Objetivo funcional y visión detallada:** por definir con el propietario.
-- **Idiomas de interfaz:** por confirmar.
-- **Moneda y reglas de precios:** por confirmar.
-- **Identidad visual, logotipo y paleta:** por confirmar con las referencias del propietario.
+- **Idiomas de interfaz:** francés, criollo haitiano e inglés.
+- **Moneda de visualización:** gourde haitiana (HTG); reglas de precios e impuestos pendientes.
+- **Estilo visual:** moderno y profesional.
+- **Paleta:** azul y blanco, estilo corporativo.
+- **Referencia visual:** Amazon como referencia de organización y experiencia marketplace; no implica copiar su identidad.
+- **Página principal:** estructura de marketplace con buscador, categorías, ofertas y productos.
+- **Navegación móvil:** barra inferior.
+- **Tema:** solo modo claro.
+- **Logotipo:** el propietario ya tiene uno y lo proporcionará; no crear uno nuevo ni sustituirlo sin autorización.
 
 ## 2. Alcance funcional confirmado
 
@@ -140,6 +146,13 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 | 2026-11-09 | La consulta de pedidos se realizará mediante WhatsApp, sin sección interna de pedidos definida | Confirmada | Cuestionario 3, respuesta 6 |
 | 2026-11-09 | No se incluirá seguimiento de pedidos dentro de la plataforma | Confirmada | Cuestionario 3, respuesta 7 |
 | 2026-11-09 | La inclusión de valoraciones y reseñas queda sin decidir | Pendiente | Cuestionario 3, respuesta 8 |
+| 2026-11-09 | La interfaz estará disponible en francés, criollo haitiano e inglés | Confirmada | Cuestionario 4, respuesta 3 |
+| 2026-11-09 | Los precios se mostrarán en gourde haitiana (HTG) | Confirmada; reglas de precios pendientes | Cuestionario 4, respuesta 4 |
+| 2026-11-09 | El diseño será moderno y profesional, con paleta azul y blanca | Confirmada | Cuestionario 4, respuestas 1 y 2 |
+| 2026-11-09 | La página principal seguirá una organización de marketplace, tomando Amazon como referencia funcional/visual | Confirmada | Cuestionario 4, respuestas 5 y 9 |
+| 2026-11-09 | La navegación móvil usará una barra inferior | Confirmada | Cuestionario 4, respuesta 6 |
+| 2026-11-09 | La interfaz tendrá únicamente tema claro | Confirmada | Cuestionario 4, respuesta 7 |
+| 2026-11-09 | Se conservará el logotipo existente que proporcionará el propietario | Confirmada; archivo pendiente de recibir | Cuestionario 4, respuesta 8 |
 
 ## 7. Bloqueos y preguntas abiertas
 
@@ -151,7 +164,7 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 - Definir condiciones, seguimiento y responsabilidades de las entregas gestionadas por cada vendedor.
 - Definir el flujo técnico de confirmación de pago MonCash/NatCash, conciliación, cancelaciones y reembolsos.
 - Definir si las valoraciones/reseñas se incorporarán y bajo qué reglas.
-- Definir idiomas, moneda, impuestos y reglas de precios.
+- Definir impuestos y reglas de precios, incluyendo formato y tratamiento de HTG.
 - Definir mecanismos concretos de confianza y resolución de problemas.
 - Reconstruir la arquitectura definitiva a partir de la información del propietario.
 - Verificar qué cuentas y servicios ya están creados y cuáles están realmente configurados.
@@ -174,7 +187,7 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 
 - Visión de producto y usuarios.
 - Funciones exactas y prioridades.
-- Diseño y referencias visuales.
+- Archivo del logotipo existente y referencias visuales adicionales, si las hubiera.
 - Flujo completo de compra y entrega.
 - Reglas de catálogo, inventario, precios y pedidos.
 - Reglas del marketplace para vendedores y administradores.
@@ -215,4 +228,17 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - No se incluirá seguimiento de pedidos dentro de la plataforma.
 - Las valoraciones/reseñas quedaron sin decisión.
 - No se aportó información adicional.
+- No se modificó código de la aplicación ni se verificó ninguna función implementada.
+
+
+### 2026-11-09 — Cuestionario 4: diseño, identidad e idiomas
+
+- Se confirmó un estilo moderno y profesional con paleta azul y blanca.
+- Idiomas de interfaz: francés, criollo haitiano e inglés.
+- Moneda de visualización: gourde haitiana (HTG); reglas de precios e impuestos pendientes.
+- La página principal seguirá una organización de marketplace, con Amazon como referencia.
+- La navegación móvil utilizará una barra inferior.
+- Se utilizará únicamente tema claro.
+- El propietario ya dispone de un logotipo y lo proporcionará; no se diseñará uno nuevo por ahora.
+- No se aportaron instrucciones adicionales.
 - No se modificó código de la aplicación ni se verificó ninguna función implementada.
