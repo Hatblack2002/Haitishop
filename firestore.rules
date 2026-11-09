@@ -30,10 +30,24 @@ service cloud.firestore {
       allow read: if signedIn() && request.auth.uid == uid;
       allow write: if false;
     }
+    // Escrow: los pedidos se crean y transicionan SOLO en el servidor (API routes
+    // con Admin SDK). El cliente solo lee sus propios pedidos.
     match /orders/{orderId} {
-      allow create: if signedIn() && request.resource.data.buyerId == request.auth.uid;
       allow read: if signedIn() && (resource.data.buyerId == request.auth.uid || isAdmin());
-      allow update, delete: if isAdmin();
+      allow create, update, delete: if false;
+    }
+    // Tokens de un solo uso (solo hash en la BD): inaccesibles desde el cliente.
+    match /escrowTokens/{tokenHash} {
+      allow read, write: if false;
+    }
+    // Historial y litigos: lectura solo admin; escritura solo servidor.
+    match /orderEvents/{eventId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+    match /disputes/{disputeId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
   }
 }

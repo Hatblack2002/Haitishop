@@ -71,6 +71,70 @@ contra el proyecto `haitishop`):
 Para quitar los permisos de administrador de la cuenta demo: eliminar el documento
 `admins/l5RRuqlzjPfgEmhk0ve6HEUo1q73` en Firestore (Console → Firestore → admins).
 
+## Escrow: confirmación de entrega con retención de pago (2026-11-10)
+
+Sistema de pago retenido tipo escrow manual: el dinero del cliente queda **retenido** y solo
+se libera al vendedor cuando el cliente confirma que recibió su pedido (o tras los plazos de
+seguridad). Sin integración MonCash/NatCash todavía: las transferencias las hace el
+propietario manualmente y luego marca «versé» en el panel. Sin anuncios ni publicidad en
+ninguna parte.
+
+Estados del pedido: `pendiente_pago → pagado_retenido → entregado_confirmado →
+pago_liberable → pago_liberado` (+ paralelos `en_disputa`, `cancelado`; los pedidos del
+antiguo flujo WhatsApp quedan como `awaiting_confirmation`).
+
+**Flujo:**
+1. Checkout (API `/api/checkout`): el servidor valida precios y stock, crea el pedido,
+   genera un **token criptográfico de 256 bits** y un **código de entrega de 6 dígitos**.
+   Guarda solo el **hash SHA-256** del token y del código (el código se guarda además
+   cifrado con AES-256-GCM para poder mostrárselo de nuevo al comprador en «Mes commandes»).
+   Envía el e-mail de compra (asunto «Ta commande HaïtiShop est confirmée») y muestra el
+   mismo resumen en pantalla.
+2. El enlace del e-mail NO confirma nada: abre `/confirmation/{token}`, una página con dos
+   botones — «Oui, j'ai reçu ma commande» y «J'ai un problème» — que no muestra datos
+   personales del comprador. La confirmación real es un **POST** con doble confirmación
+   («Êtes-vous sûr ? Le paiement sera envoyé au vendeur»).
+3. Tras confirmar: e-mail «Tu as confirmé la réception…» con botón de anulación válido 24 h
+   (token `deshacer_confirmacion`). Si lo usa, el pedido pasa a `en_disputa` y el pago queda
+   retenido.
+4. El vendedor marca la entrega en «Mes ventes» introduciendo el código de 6 dígitos:
+   máx. 5 intentos fallidos y el código se **bloquea** con aviso al administrador.
+5. Plazos automáticos: sin disputa 24 h tras la confirmación (o 72 h tras la marca de
+   entrega sin respuesta) → `pago_liberable`. Tick lazy en cada lectura + cron diario
+   (`/api/cron/escrow`, protegido con `CRON_SECRET`).
+6. El administrador transfiere al vendedor y pulsa «Marquer paiement libéré» →
+   `pago_liberado`. Cada evento queda en el historial (quién, qué, cuándo) y el admin
+   recibe un correo en cada confirmación, litigo y pago liberable.
+
+**Panel de administración** (pestañas): *Commandes* (filtro por estado, vendedor, monto,
+comisión y monto a transferir, botones «Paiement reçu» / «Marquer paiement libéré»),
+*Litiges* (cola con motivo y fotos, resolver a favor del vendedor o del cliente) e
+*Historique* (auditoría completa).
+
+**Seguridad:** todo el procesamiento en el servidor (Next.js API routes + Firebase Admin
+SDK, inicialización perezosa); tokens de un solo uso (transacciones de Firestore, campo
+`used_at`) con caducidad (confirmar 14 días, anular 24 h) e invalidación del anterior al
+regenerar; validación token↔pedido↔cliente; rate limiting por IP en los endpoints
+sensibles; reglas de Firestore que bloquean toda escritura cliente sobre `orders`,
+`escrowTokens`, `orderEvents` y `disputes`; claves solo por variables de entorno.
+
+**Variables de entorno del servidor (Vercel → Settings → Environment Variables):**
+
+| Variable | Valor |
+|---|---|
+| `FIREBASE_PROJECT_ID` | `haitishop` |
+| `FIREBASE_CLIENT_EMAIL` | `firebase-adminsdk-…@haitishop.iam.gserviceaccount.com` (del JSON de la cuenta de servicio) |
+| `FIREBASE_PRIVATE_KEY` | la clave privada del mismo JSON (con los `\n` literales) |
+| `RESEND_API_KEY` | opcional: envío real de e-mails (resend.com, gratis). Sin clave, los correos se registran en el log y en el historial y nada se rompe |
+| `ADMIN_EMAIL` | correo del propietario que recibe los avisos (por defecto `vertiljivenson9@gmail.com`) |
+| `ESCROW_COMMISSION_PERCENT` | comisión en % (por defecto 5) |
+| `CRON_SECRET` | secreto del cron de Vercel |
+
+**Orden de puesta en marcha en producción:** 1) añadir las variables `FIREBASE_*` en
+Vercel y redesplegar; 2) desplegar las reglas de Firestore actualizadas (`firestore.rules`:
+escrituras de pedidos/tokens/eventos/litigos solo servidor — puede hacerse desde la consola
+o con la CLI); 3) opcionalmente configurar `RESEND_API_KEY` para los e-mails reales.
+
 ## Funciones de la demo (estado 2026-11-10)
 
 - **Onboarding tipo marketplace (Comment ça marche)**: sección en la portada con las dos
@@ -90,9 +154,12 @@ Para quitar los permisos de administrador de la cuenta demo: eliminar el documen
 - **Verificación documental de vendedores**: el formulario de inscripción de vendedor sube
   una foto del documento a Cloudinary (carpeta `haitishop-demo/documents`) y la
   administración la revisa con el enlace «Voir le document» antes de aprobar.
-- **Panel de administración**: demandas de vendedores pendientes (con documento) y las
-  20 últimas órdenes registradas en Firestore (comprador, total, método de pago, estado,
-  contacto y artículos).
+- **Panel de administración**: demandas de vendedores pendientes (con documento), gestión
+  de pagos escrow por pestañas (Commandes / Litiges / Historique) y auditoría de eventos.
+- **Mes commandes**: el comprador ve sus pedidos con estado del escrow, su código de
+  entrega, los plazos y puede pedir un nuevo enlace de confirmación.
+- **Mes ventes**: el vendedor ve los pedidos con sus productos, lo que recibirá (después de
+  la comisión) y marca la entrega con el código del cliente.
 - **SEO y favicon**: metadatos Open Graph/Twitter con el logo original y `icon.png`
   (generado desde el logo) servido por Next.js.
 

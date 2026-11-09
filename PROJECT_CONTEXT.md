@@ -409,3 +409,37 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - Verificado en navegador: el botón contacta a Firebase y muestra el aviso correcto de
   «proveedor no activado», lo que confirma el cableado completo; al activar el proveedor
   el mismo botón abrirá el selector de cuentas de Google.
+
+## Sesión 2026-11-10 — Escrow manual (retención de pago hasta confirmación de entrega)
+
+- Implementado el sistema completo de escrow manual sobre el stack existente (Next.js 15
+  App Router + Firebase Auth/Firestore + Cloudinary), sin anuncios ni publicidad.
+- **Servidor nuevo** (`src/lib/server/`): `firebase-admin.ts` (SDK admin con init perezoso
+  y verificación de ID tokens), `crypto-utils.ts` (tokens 256 bits base64url, SHA-256,
+  código 6 dígitos, AES-256-GCM), `rate-limit.ts`, `mail.ts` (7 plantillas FR via Resend,
+  con registro en `orderEvents` si no hay clave) y `escrow.ts` (máquina de estados,
+  comisiones, transiciones 24 h/72 h, eventos).
+- **14 API routes** (`src/app/api/`): checkout, orders/mine, escrow/{confirm,undo,dispute,
+  resend}, seller/{orders,deliver}, admin/{orders,payment,disputes,events}, cron/escrow.
+  Todas `force-dynamic`, runtime nodejs, verificación de sesión por ID token + rol admin.
+- **Página pública** `/confirmation/[token]` (server component + cliente): lookup por hash,
+  dos botones anti-escáner, doble confirmación, formulario de litigo con fotos Cloudinary,
+  anulación 24 h. Sin datos personales del comprador. `noindex`.
+- **UI**: checkout ahora llama a la API (no escribe Firestore desde el cliente), modal de
+  éxito con código de 6 dígitos + enlace seguro, sección «Mes commandes», bloque «Mes
+  ventes» del vendedor con entrada del código, panel admin con pestañas Commandes/Litiges/
+  Historique. Canál WhatsApp retirado del flujo (el escrow lo sustituye).
+- **Reglas Firestore** actualizadas: pedidos solo lectura propia/admin y escritura
+  exclusivamente por servidor; `escrowTokens` inaccesibles desde cliente; `orderEvents` y
+  `disputes` solo lectura admin. Pendiente de desplegar en producción junto con las
+  variables de entorno del servidor (ver README: orden de puesta en marcha).
+- **E2E completo en local (33/33)**: checkout con validación de precios/stock y comisión 5%,
+  token solo como hash en BD, código cifrado, landing sin datos personales, confirmación
+  POST con doble confirmación, reuso de token rechazado («Ce paiement a déjà été confirmé»),
+  marca de entrega con código (intento erróneo contado, acierto marca 72 h), cron automático
+  → pago_liberable, disputa desde landing → resolución admin → pago_liberado, historial
+  completo y controles 401/403. Verificado también en navegador (landing, doble
+  confirmación, Mes commandes con código, panel admin).
+- firebase-admin funcionó sin problemas en el sandbox esta vez (init perezoso + Node 24).
+- Pendiente del propietario: variables `FIREBASE_*` en Vercel + redespliegue, desplegar
+  reglas nuevas, opcional `RESEND_API_KEY` para correos reales, revocar token de GitHub.
