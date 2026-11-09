@@ -52,12 +52,18 @@ El propietario seleccionó:
 
 Los mecanismos concretos para garantizar confianza (verificación de vendedores, reseñas, disputas, reembolsos, moderación, etc.) están pendientes de diseño.
 
-### 2.4 Pagos y pedidos
+### 2.4 Experiencia de compra, pagos y pedidos
 
-- MonCash y NatCash son requisitos de integración.
-- Su presencia en el alcance no significa que sus API estén conectadas ni que existan credenciales o entornos de prueba configurados.
-- El propietario no especificó información adicional aparte de MonCash y NatCash.
-- Flujo de pedidos, confirmación de pago, conciliación, cancelaciones y reembolsos: por definir.
+- Los visitantes podrán explorar el catálogo tanto sin cuenta como después de iniciar sesión.
+- La creación de cuenta será obligatoria al llegar al checkout/confirmación de compra; no será necesaria para explorar.
+- El carrito será persistente y estará asociado a la cuenta del comprador.
+- El checkout se realizará dentro de HaïtiShop y se complementará con confirmación mediante WhatsApp.
+- MonCash y NatCash aparecerán como métodos de pago seleccionables.
+- La selección de ambos métodos no significa que sus API estén conectadas ni que existan credenciales o entornos de prueba configurados.
+- El cliente consultará sus pedidos únicamente mediante WhatsApp; no se ha solicitado una sección interna de «Mis pedidos».
+- No se incluirá seguimiento de pedidos dentro de la plataforma en el alcance decidido hasta ahora.
+- Las valoraciones y reseñas están pendientes de decisión.
+- Reglas de confirmación de pago, conciliación, cancelaciones y reembolsos: por definir.
 
 ## 3. Arquitectura y servicios
 
@@ -95,13 +101,13 @@ Registrar aquí, cuando el propietario los vuelva a proporcionar:
 | Diseño y páginas | Por confirmar | — |
 | Marketplace / panel de vendedores | Alcance funcional definido; implementación por inspeccionar | Panel administrativo y panel individual de vendedor |
 | Catálogo de productos | Alcance definido parcialmente | Seis categorías iniciales confirmadas |
-| Carrito | Por confirmar | — |
-| Checkout | Por confirmar | — |
+| Carrito | Alcance funcional definido; implementación por inspeccionar | Carrito persistente asociado a la cuenta |
+| Checkout | Alcance funcional definido; implementación por inspeccionar | Checkout interno con confirmación complementaria por WhatsApp |
 | Autenticación | Por confirmar | Firebase Authentication es una decisión previa |
 | Cloudinary | Por confirmar | Decisión previa |
 | MonCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
 | NatCash | Requisito confirmado; implementación por confirmar | No asumir conexión activa |
-| Flujo WhatsApp | Por confirmar | Decisión previa |
+| Flujo WhatsApp | Alcance funcional definido parcialmente; implementación por inspeccionar | Confirmación de compra y consulta de pedidos por WhatsApp |
 | Pruebas | Por confirmar | — |
 | Despliegue demo | Por confirmar | — |
 
@@ -126,6 +132,14 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 | 2026-11-09 | El modelo de ingresos será mediante suscripción de vendedores | Confirmada; condiciones económicas pendientes | Cuestionario 2, respuesta 5 |
 | 2026-11-09 | Cada vendedor gestionará sus propios precios e inventario | Confirmada | Cuestionario 2, respuesta 6 |
 | 2026-11-09 | Cada vendedor organizará sus propias entregas | Confirmada | Cuestionario 2, respuesta 7 |
+| 2026-11-09 | El catálogo se podrá explorar con o sin cuenta | Confirmada | Cuestionario 3, respuesta 1 |
+| 2026-11-09 | La cuenta será obligatoria al realizar el checkout/confirmar la compra | Confirmada | Cuestionario 3, respuesta 2 |
+| 2026-11-09 | El carrito será persistente y asociado a la cuenta del comprador | Confirmada | Cuestionario 3, respuesta 3 |
+| 2026-11-09 | Checkout dentro de HaïtiShop, complementado con confirmación por WhatsApp | Confirmada | Cuestionario 3, respuesta 4 |
+| 2026-11-09 | MonCash y NatCash serán métodos seleccionables en el checkout | Confirmada como alcance; conexión técnica pendiente | Cuestionario 3, respuesta 5 |
+| 2026-11-09 | La consulta de pedidos se realizará mediante WhatsApp, sin sección interna de pedidos definida | Confirmada | Cuestionario 3, respuesta 6 |
+| 2026-11-09 | No se incluirá seguimiento de pedidos dentro de la plataforma | Confirmada | Cuestionario 3, respuesta 7 |
+| 2026-11-09 | La inclusión de valoraciones y reseñas queda sin decidir | Pendiente | Cuestionario 3, respuesta 8 |
 
 ## 7. Bloqueos y preguntas abiertas
 
@@ -135,7 +149,8 @@ Añadir cada decisión con fecha, responsable y motivo. Si una decisión cambia,
 - Definir precio, periodicidad, niveles, período de prueba y consecuencias de impago de las suscripciones.
 - Definir controles administrativos y límites de gestión sobre productos e inventario de vendedores.
 - Definir condiciones, seguimiento y responsabilidades de las entregas gestionadas por cada vendedor.
-- Definir el flujo de compra y cómo se confirma un pago MonCash o NatCash en el demo.
+- Definir el flujo técnico de confirmación de pago MonCash/NatCash, conciliación, cancelaciones y reembolsos.
+- Definir si las valoraciones/reseñas se incorporarán y bajo qué reglas.
 - Definir idiomas, moneda, impuestos y reglas de precios.
 - Definir mecanismos concretos de confianza y resolución de problemas.
 - Reconstruir la arquitectura definitiva a partir de la información del propietario.
@@ -185,5 +200,19 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
 - Se confirmó panel administrativo y panel independiente para cada vendedor.
 - Se seleccionó suscripción como modelo de ingresos; condiciones y precios siguen pendientes.
 - Se confirmó que cada vendedor gestiona precios e inventario y organiza sus propias entregas.
+- No se aportó información adicional.
+- No se modificó código de la aplicación ni se verificó ninguna función implementada.
+
+
+### 2026-11-09 — Cuestionario 3: experiencia de compra y pedidos
+
+- Se confirmó que el catálogo podrá explorarse con o sin cuenta.
+- La cuenta será obligatoria al realizar el checkout/confirmar la compra.
+- Se confirmó un carrito persistente asociado a la cuenta.
+- El checkout se realizará dentro de HaïtiShop y tendrá confirmación complementaria mediante WhatsApp.
+- MonCash y NatCash se presentarán como métodos seleccionables; la integración técnica sigue sin verificarse.
+- El comprador consultará sus pedidos mediante WhatsApp, no mediante una sección interna de pedidos.
+- No se incluirá seguimiento de pedidos dentro de la plataforma.
+- Las valoraciones/reseñas quedaron sin decisión.
 - No se aportó información adicional.
 - No se modificó código de la aplicación ni se verificó ninguna función implementada.
