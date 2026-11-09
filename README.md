@@ -79,6 +79,9 @@ Para quitar los permisos de administrador de la cuenta demo: eliminar el documen
 - **Guía post-autenticación**: tras entrar o crear cuenta, un aviso contextual explica el
   siguiente paso y el carrito se reabre automáticamente si tenía productos.
 
+- **Login con Google**: botón «Continuer avec Google» en el modal (signInWithPopup).
+  Requiere activar una vez el proveedor en Firebase Console → Authentication →
+  Sign-in method → Google → Activer (gratis, usa el correo de asistencia del proyecto).
 - **Login Firebase email/contraseña** con recuperación de contraseña ("Mot de passe oublié ?"
   envía el correo de restablecimiento de Firebase) y errores traducidos al francés.
 - **Ficha de producto**: al hacer clic en la imagen o el nombre de un producto se abre una

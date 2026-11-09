@@ -393,3 +393,19 @@ Este apartado se completará progresivamente durante la reconstrucción del cont
   carrito tenía productos, se reabre automáticamente para continuar el checkout.
 - Verificado en navegador: visitante añade al carrito → al pagar se abre el acceso;
   tras entrar, el carrito reaparece listo para pagar. typecheck, lint y build correctos.
+
+### 2026-11-10 — Acceso con Google (cliente listo, proveedor por activar en consola)
+
+- Botón «Continuer avec Google» añadido al modal de acceso (signInWithPopup con
+  GoogleAuthProvider, SVG oficial G, divisor «ou»), con errores traducidos al francés
+  (popup bloqueada, popup cerrada, dominio no autorizado, proveedor desactivado) y
+  detección de usuario nuevo (mensaje «Compte créé avec Google»).
+- El propietario debe activar el proveedor una vez en Firebase Console → Authentication →
+  Sign-in method → Google → Activer → Guardar (gratis). La API admin exige un client_id
+  OAuth que la cuenta de servicio del demo no puede crear (falta permiso para habilitar
+  la API de IAP/OAuth clients), por lo que ese último clic queda para la consola.
+- Detectado y corregido de paso: .auth-modal podía desbordar el viewport con el botón
+  nuevo; ahora tiene max-height y scroll interno (afectaba al móvil).
+- Verificado en navegador: el botón contacta a Firebase y muestra el aviso correcto de
+  «proveedor no activado», lo que confirma el cableado completo; al activar el proveedor
+  el mismo botón abrirá el selector de cuentas de Google.
