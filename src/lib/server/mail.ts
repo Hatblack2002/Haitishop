@@ -13,7 +13,8 @@ const EMAIL_FROM = process.env.EMAIL_FROM || "HaïtiShop <onboarding@resend.dev>
 
 export type MailTemplate =
   | "purchase" | "confirmed_with_undo" | "delivery_marked" | "dispute_opened"
-  | "payment_liberable" | "payment_released" | "dispute_resolved" | "admin_notice";
+  | "payment_liberable" | "payment_released" | "dispute_resolved" | "admin_notice"
+  | "kyc_submitted" | "kyc_result" | "kyc_suspended" | "kyc_payout_change";
 
 type MailInput = {
   to: string;
@@ -180,4 +181,84 @@ export async function sendMail(mail: MailInput): Promise<{ sent: boolean; reason
     console.error("[mail:error]", mail.template, error);
     return { sent: false, reason: "send_failed" };
   }
+}
+
+
+/* ------------------------------------------------------- KYC de vendedores */
+
+export function buildKycSubmittedMail(p: { storeName: string; sellerEmail: string; fullName: string; city: string; department: string }): { subject: string; html: string } {
+  return {
+    subject: "Nouvelle demande vendeur à examiner — " + p.storeName,
+    html: wrap(
+      "Nouvelle demande de vérification 🧾",
+      `<p>Un vendeur vient d'envoyer son dossier complet :</p>` +
+      `<table style="width:100%;margin:12px 0;">` +
+      `<tr><td style="padding:6px 0;">Boutique</td><td style="text-align:right;"><b>${p.storeName}</b></td></tr>` +
+      `<tr><td style="padding:6px 0;">Responsable</td><td style="text-align:right;">${p.fullName}</td></tr>` +
+      `<tr><td style="padding:6px 0;">E-mail</td><td style="text-align:right;">${p.sellerEmail}</td></tr>` +
+      `<tr><td style="padding:6px 0;">Localisation</td><td style="text-align:right;">${p.city} (${p.department})</td></tr>` +
+      `</table>` +
+      `<p>Ouvre le panneau d'administration → onglet <b>Vendeurs</b> pour examiner le dossier et décider.</p>` +
+      `<p style="color:#6b7280;font-size:12px;">Documents chiffrés · liens valables 10 minutes · chaque ouverture est enregistrée (qui, quand).</p>`
+    )
+  };
+}
+
+export function buildKycResultMail(p: { approved: boolean; storeName: string; motivo?: string; info?: string }): { subject: string; html: string } {
+  if (p.approved) {
+    return {
+      subject: "Ton compte vendeur HaïtiShop est vérifié ✅",
+      html: wrap(
+        "Boutique vérifiée 🎉",
+        `<p>Bonne nouvelle : <b>${p.storeName}</b> est maintenant un <b>vendeur vérifié</b> HaïtiShop.</p>` +
+        `<p>Tu peux publier tes produits dès maintenant. Tes clients verront l'insigne « Vendeur vérifié » sur ta boutique.</p>` +
+        `<p>Les paiements de tes ventes restent sécurisés par HaïtiShop et sont versés sur ton numéro de paiement vérifié après confirmation de livraison par le client.</p>`
+      )
+    };
+  }
+  if (p.info) {
+    return {
+      subject: "Il nous manque des informations — " + p.storeName,
+      html: wrap(
+        "Information demandée",
+        `<p>Concernant la vérification de <b>${p.storeName}</b>, l'administration a besoin de précisions :</p>` +
+        `<p style="background:#f3f6fb;border-left:4px solid #1769d2;padding:12px 14px;border-radius:8px;">${p.info}</p>` +
+        `<p>Mets à jour ton dossier dans ton espace vendeur puis renvoie-le : l'examen reprendra aussitôt.</p>`
+      )
+    };
+  }
+  return {
+    subject: "Ta demande vendeur a été refusée — " + p.storeName,
+    html: wrap(
+      "Demande refusée",
+      `<p>Après examen, la vérification de <b>${p.storeName}</b> n'a pas été acceptée. Motif :</p>` +
+      `<p style="background:#fdf0ef;border-left:4px solid #d64541;padding:12px 14px;border-radius:8px;">${p.motivo || "Non précisé."}</p>` +
+      `<p>Tu peux corriger ton dossier (documents plus lisibles, informations exactes…) et le renvoyer depuis ton espace vendeur.</p>` +
+      `<p style="color:#6b7280;font-size:12px;">Après plusieurs refus, le compte peut être bloqué : contacte l'administration.</p>`
+    )
+  };
+}
+
+export function buildKycSuspendedMail(p: { storeName: string; motivo: string }): { subject: string; html: string } {
+  return {
+    subject: "Ta boutique HaïtiShop a été suspendue",
+    html: wrap(
+      "Compte suspendu",
+      `<p>La boutique <b>${p.storeName}</b> a été suspendue par l'administration. Motif :</p>` +
+      `<p style="background:#fdf0ef;border-left:4px solid #d64541;padding:12px 14px;border-radius:8px;">${p.motivo}</p>` +
+      `<p>Tes produits ne sont plus visibles et les paiements en attente restent conservés jusqu'à la révision de ton dossier par l'administration.</p>`
+    )
+  };
+}
+
+export function buildKycPayoutChangeMail(p: { storeName: string; sellerEmail: string }): { subject: string; html: string } {
+  return {
+    subject: "Changement de numéro de paiement — re-vérification requise",
+    html: wrap(
+      "Numéro de paiement modifié ⚠️",
+      `<p>Le vendeur vérifié <b>${p.storeName}</b> (${p.sellerEmail}) a changé son numéro de paiement.</p>` +
+      `<p>Son compte repasse automatiquement en <b>révision</b> : il doit re-vérifier le nouveau numéro par WhatsApp avant de recevoir de nouveaux paiements.</p>` +
+      `<p>Les paiements libérables restent retenus tant que le dossier n'est pas re-validé.</p>`
+    )
+  };
 }

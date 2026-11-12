@@ -38,6 +38,16 @@ export async function POST(req: Request) {
         return { ok: true as const, from: status, to: "pagado_retenido", buyerEmail: String(order.buyerEmail || ""), sellerPayouts: order.sellerPayouts || [], orderId };
       }
       if (action === "release" && status === "pago_liberable") {
+        // Escrow × KYC: solo se paga a vendedores verificados (retención si no).
+        const payoutsToCheck = (order.sellerPayouts || []) as { sellerId?: string }[];
+        for (const p of payoutsToCheck) {
+          const sid = String(p.sellerId || "");
+          if (!sid || sid === "haitishop-selection") continue;
+          const sDoc = await tx.get(adminDb().collection("sellers").doc(sid));
+          if (sDoc.exists && String(sDoc.get("status") || "") !== "verificado") {
+            return { ok: false as const, code: 403, error: "Paiement retenu : un vendeur de cette commande n'est pas vérifié (KYC). Révisez son dossier avant de transférer." };
+          }
+        }
         tx.update(orderRef, { status: "pago_liberado", releasedAt: FieldValue.serverTimestamp() });
         return { ok: true as const, from: status, to: "pago_liberado", buyerEmail: String(order.buyerEmail || ""), sellerPayouts: order.sellerPayouts || [], orderId };
       }
@@ -52,8 +62,13 @@ export async function POST(req: Request) {
 
     if (action === "release") {
       for (const payout of outcome.sellerPayouts as { sellerId: string; sellerName: string; payout: number }[]) {
-        const sellerDoc = await adminDb().collection("sellerApplications").doc(payout.sellerId).get().catch(() => null);
-        const sellerEmail = String(sellerDoc?.get("email") || "");
+        let sellerEmail = "";
+        const kycDoc = await adminDb().collection("sellers").doc(payout.sellerId).get().catch(() => null);
+        if (kycDoc && kycDoc.exists) sellerEmail = String(kycDoc.get("email") || "");
+        if (!sellerEmail) {
+          const legacyDoc = await adminDb().collection("sellerApplications").doc(payout.sellerId).get().catch(() => null);
+          sellerEmail = String(legacyDoc?.get("email") || "");
+        }
         if (sellerEmail) {
           const mail = buildReleasedMail({ orderId, payout: payout.payout, isSeller: true });
           await sendMail({ to: sellerEmail, subject: mail.subject, html: mail.html, orderId, template: "payment_released" });

@@ -17,7 +17,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794064800
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "electronique-02-batterie-externe",
@@ -36,7 +37,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794061200
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "electronique-03-smart-tv-43",
@@ -55,7 +57,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794057600
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "mode-04-chemise-polo",
@@ -74,7 +77,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794054000
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "mode-05-robe-ete",
@@ -93,7 +97,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794050400
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "mode-06-sandales-cuir",
@@ -112,7 +117,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794046800
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "maison-07-blender-cuisine",
@@ -131,7 +137,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794043200
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "maison-08-ventilateur-pied",
@@ -150,7 +157,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794039600
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "maison-09-batterie-cuisine",
@@ -169,7 +177,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794036000
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "beaute-10-huile-coco",
@@ -188,7 +197,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794032400
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "beaute-11-creme-hydratante",
@@ -207,7 +217,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794028800
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "beaute-12-parfum-femme",
@@ -226,7 +237,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794025200
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "alimentation-13-cafe-haitien",
@@ -245,7 +257,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794021600
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "alimentation-14-riz-25kg",
@@ -264,7 +277,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794018000
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "alimentation-15-huile-vegetale",
@@ -283,7 +297,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794014400
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "construction-16-ciment-42kg",
@@ -302,7 +317,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794010800
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "construction-17-peinture-5gallons",
@@ -321,7 +337,8 @@
     "active": true,
     "createdAt": {
       "seconds": 1794007200
-    }
+    },
+    "sellerVerified": true
   },
   {
     "id": "construction-18-perceuse-21v",
@@ -340,6 +357,7 @@
     "active": true,
     "createdAt": {
       "seconds": 1794003600
-    }
+    },
+    "sellerVerified": true
   }
 ]

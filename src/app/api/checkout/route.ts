@@ -48,6 +48,14 @@ export async function POST(req: Request) {
         quantity, sellerId: String(p.sellerId || ""), sellerName: String(p.sellerName || "Vendeur HaïtiShop")
       });
     }
+    // KYC: solo se compra a vendedores verificados (el catálogo de la casa salta el control).
+    const uniqueSellerIds = [...new Set(lines.map((l) => l.sellerId).filter((id) => id && id !== "haitishop-selection"))];
+    for (const sellerId of uniqueSellerIds) {
+      const sellerSnap = await adminDb().collection("sellers").doc(sellerId).get().catch(() => null);
+      if (sellerSnap && sellerSnap.exists && String(sellerSnap.get("status") || "") !== "verificado") {
+        return json({ error: "Un produit de votre panier appartient à un vendeur en cours de vérification. Réessayez plus tard." }, 400);
+      }
+    }
     const total = lines.reduce((sum, l) => sum + Math.round(l.price * l.quantity), 0);
     const sellerPayouts = computeSellerPayouts(lines);
     const commissionTotal = sellerPayouts.reduce((s, p) => s + p.commission, 0);

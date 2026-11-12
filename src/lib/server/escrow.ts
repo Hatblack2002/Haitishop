@@ -174,8 +174,13 @@ export async function transitionToLiberable(orderId: string, reason: "undo_windo
   const mail = buildLiberableMail({ orderId, sellerNames, sellerPayout: totalPayout });
   await sendMail({ to: ADMIN_EMAIL, subject: mail.subject, html: mail.html, orderId, template: "payment_liberable" });
   for (const payout of payouts) {
-    const sellerDoc = await adminDb().collection("sellerApplications").doc(payout.sellerId).get().catch(() => null);
-    const sellerEmail = String(sellerDoc?.get("email") || "");
+    let sellerEmail = "";
+    const kycDoc = await adminDb().collection("sellers").doc(payout.sellerId).get().catch(() => null);
+    if (kycDoc && kycDoc.exists) sellerEmail = String(kycDoc.get("email") || "");
+    if (!sellerEmail) {
+      const legacyDoc = await adminDb().collection("sellerApplications").doc(payout.sellerId).get().catch(() => null);
+      sellerEmail = String(legacyDoc?.get("email") || "");
+    }
     if (sellerEmail) await sendMail({ to: sellerEmail, subject: mail.subject, html: mail.html, orderId, template: "payment_liberable" });
   }
   return true;

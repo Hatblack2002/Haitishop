@@ -22,6 +22,7 @@ export interface SeedProduct {
   sellerName: string;
   brand?: string;
   imageUrl: string;
+  sellerVerified?: boolean;
   imagePublicId: string;
   imageProvider: string;
   active: boolean;
