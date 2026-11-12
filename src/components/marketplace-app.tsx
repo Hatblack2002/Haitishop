@@ -346,7 +346,17 @@ export function MarketplaceApp() {
   }
   async function openAdminKyc(uid: string) {
     setBusy(true); setAiAnalysis(null); setKycMotivo("");
-    try { const data = await api("/api/admin/kyc/seller/" + uid); setAdminKycDetail(data as unknown as AdminKycDetail); }
+    try {
+      const data = await api("/api/admin/kyc/seller/" + uid) as { seller: Record<string, unknown>; documentLinks?: Record<string, string>; audit?: unknown[]; accessLog?: unknown[] };
+      // Aplanar: el API devuelve { seller, documentLinks, audit, accessLog } y
+      // el modal espera los campos del vendedor en la raíz.
+      setAdminKycDetail({
+        ...(data.seller as unknown as AdminKycRow),
+        documentLinks: data.documentLinks || {},
+        audit: (data.audit || []) as AdminKycDetail["audit"],
+        accessLog: (data.accessLog || []) as AdminKycDetail["accessLog"]
+      } as AdminKycDetail);
+    }
     catch (error) { setNotice(error instanceof Error ? error.message : "Dossier indisponible."); }
     finally { setBusy(false); }
   }
@@ -437,7 +447,7 @@ export function MarketplaceApp() {
     if (adminTab === "historique") void loadEvents();
     if (adminTab === "vendeurs") void loadAdminKyc();
     /* eslint-disable react-hooks/exhaustive-deps */
-  }, [isAdmin, adminTab]);
+  }, [isAdmin, adminTab, adminKycFilter]);
 
   async function resendConfirmLink(orderId: string) {
     setBusy(true); setNotice("");
